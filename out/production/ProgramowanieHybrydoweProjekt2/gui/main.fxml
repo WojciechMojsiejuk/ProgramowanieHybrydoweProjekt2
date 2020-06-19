@@ -16,7 +16,7 @@
                   <items>
                         <MenuItem fx:id="openMenuItem" mnemonicParsing="false" onAction="#openFile" text="Open" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveFile" text="Save" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Filters">
@@ -46,14 +46,42 @@
                      </center>
                   </BorderPane>
                   <Separator orientation="VERTICAL" />
-                  <LineChart fx:id="HistogramChart" createSymbols="false" prefWidth="500.0" title="Histogram">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" fx:id="xHistAxis" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis fx:id="yHistAxis" side="LEFT" />
-                    </yAxis>
-                  </LineChart>
+                  <VBox prefWidth="500.0">
+                     <children>
+                        <LineChart fx:id="LuminousHistogramChart" createSymbols="false" title="Luminous">
+                          <xAxis>
+                            <CategoryAxis prefWidth="500.0" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                        <LineChart fx:id="RHistogramChart" createSymbols="false" prefWidth="500.0" title="R channel">
+                          <xAxis>
+                            <CategoryAxis prefWidth="500.0" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                        <LineChart fx:id="GHistogramChart" createSymbols="false" title="G channel">
+                          <xAxis>
+                            <CategoryAxis prefWidth="500.0" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                        <LineChart fx:id="BHistogramChart" createSymbols="false" title="B channel">
+                          <xAxis>
+                            <CategoryAxis prefWidth="500.0" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>

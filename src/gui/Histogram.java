@@ -8,12 +8,12 @@ public class Histogram{
 
         private Image image;
 
-        private long alpha[] = new long[256];
+        private long luminous[] = new long[256];
         private long red[] = new long[256];
         private long green[] = new long[256];
         private long blue[] = new long[256];
 
-        XYChart.Series seriesAlpha;
+        XYChart.Series seriesLuminous;
         XYChart.Series seriesRed;
         XYChart.Series seriesGreen;
         XYChart.Series seriesBlue;
@@ -27,7 +27,7 @@ public class Histogram{
 
         //init
         for (int i = 0; i < 256; i++) {
-            alpha[i] = red[i] = green[i] = blue[i] = 0;
+            luminous[i] = red[i] = green[i] = blue[i] = 0;
         }
 
         PixelReader pixelReader = image.getPixelReader();
@@ -39,12 +39,11 @@ public class Histogram{
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {
                 int argb = pixelReader.getArgb(x, y);
-                int a = (0xff & (argb >> 24));
                 int r = (0xff & (argb >> 16));
                 int g = (0xff & (argb >> 8));
                 int b = (0xff & argb);
 
-                alpha[a]++;
+                luminous[(int)(pixelReader.getColor(x,y).getBrightness()*255)]++;
                 red[r]++;
                 green[g]++;
                 blue[b]++;
@@ -52,11 +51,12 @@ public class Histogram{
             }
         }
 
-        seriesAlpha = new XYChart.Series();
+        seriesLuminous = new XYChart.Series();
         seriesRed = new XYChart.Series();
         seriesGreen = new XYChart.Series();
         seriesBlue = new XYChart.Series();
-        seriesAlpha.setName("alpha");
+        seriesLuminous.setName("luminous");
+
         seriesRed.setName("red");
         seriesGreen.setName("green");
         seriesBlue.setName("blue");
@@ -64,7 +64,7 @@ public class Histogram{
         //copy alpha[], red[], green[], blue[]
         //to seriesAlpha, seriesRed, seriesGreen, seriesBlue
         for (int i = 0; i < 256; i++) {
-            seriesAlpha.getData().add(new XYChart.Data(String.valueOf(i), alpha[i]));
+            seriesLuminous.getData().add(new XYChart.Data(String.valueOf(i), luminous[i]));
             seriesRed.getData().add(new XYChart.Data(String.valueOf(i), red[i]));
             seriesGreen.getData().add(new XYChart.Data(String.valueOf(i), green[i]));
             seriesBlue.getData().add(new XYChart.Data(String.valueOf(i), blue[i]));
@@ -72,8 +72,8 @@ public class Histogram{
     }
 
 
-    public XYChart.Series getSeriesAlpha() {
-            return seriesAlpha;
+    public XYChart.Series getSeriesLuminous() {
+            return seriesLuminous;
         }
 
         public XYChart.Series getSeriesRed() {
