@@ -34,17 +34,19 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <HBox prefHeight="490.0" prefWidth="600.0">
+            <HBox prefHeight="490.0" prefWidth="1000.0">
                <children>
-                  <ImageView fx:id="imageViewer" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </HBox.margin>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport></ImageView>
-                  <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <LineChart fx:id="HistogramChart" createSymbols="false" title="Histogram">
+                  <BorderPane prefWidth="500.0">
+                     <center>
+                        <ImageView fx:id="imageViewer" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </center>
+                  </BorderPane>
+                  <Separator orientation="VERTICAL" />
+                  <LineChart fx:id="HistogramChart" createSymbols="false" prefWidth="500.0" title="Histogram">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" fx:id="xHistAxis" />
                     </xAxis>
