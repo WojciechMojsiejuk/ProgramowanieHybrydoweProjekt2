@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -43,7 +44,14 @@
                         <Rectangle2D />
                      </viewport></ImageView>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <ImageView fitHeight="490.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <LineChart fx:id="HistogramChart" createSymbols="false" title="Histogram">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" fx:id="xHistAxis" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="yHistAxis" side="LEFT" />
+                    </yAxis>
+                  </LineChart>
                </children>
             </HBox>
          </children>
