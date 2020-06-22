@@ -33,8 +33,12 @@ public class Controller {
     @FXML
     public LineChart LuminousHistogramChart;
 
-    protected Histogram histogram;
-    protected Image image;
+    protected ImageProcessing imageProcessing;
+
+    public ImageProcessing getImageProcessing()
+    {
+        return this.imageProcessing;
+    }
 
     @FXML
     public void openFile(javafx.event.ActionEvent actionEvent) {
@@ -46,34 +50,34 @@ public class Controller {
 
         if(selectedImage!=null)
         {
-            image = new Image(selectedImage.toURI().toString());
-            imageViewer.setImage(image);
-            histogram = new Histogram(image);
+            imageProcessing = new ImageProcessing(new Image(selectedImage.toURI().toString()));
+            imageViewer.setImage(imageProcessing.image);
+            imageProcessing.histogram = new Histogram(imageProcessing.image);
 
             LuminousHistogramChart.getData().clear();
             LuminousHistogramChart.getData().addAll(
-                    histogram.getSeriesLuminous());
+                    imageProcessing.histogram.getSeriesLuminous());
             LuminousHistogramChart.getStyleClass().add("-fx-stroke: black");
             LuminousHistogramChart.autosize();
             LuminousHistogramChart.applyCss();
 
             RHistogramChart.getData().clear();
             RHistogramChart.getData().addAll(
-                    histogram.getSeriesRed());
+                    imageProcessing.histogram.getSeriesRed());
             RHistogramChart.setStyle("-fx-stroke: red");
             RHistogramChart.autosize();
             RHistogramChart.applyCss();
 
             GHistogramChart.getData().clear();
             GHistogramChart.getData().addAll(
-                    histogram.getSeriesGreen());
+                    imageProcessing.histogram.getSeriesGreen());
             GHistogramChart.setStyle("-fx-stroke: green");
             GHistogramChart.autosize();
             GHistogramChart.applyCss();
 
             BHistogramChart.getData().clear();
             BHistogramChart.getData().addAll(
-                    histogram.getSeriesBlue());
+                    imageProcessing.histogram.getSeriesBlue());
             BHistogramChart.setStyle("-fx-stroke: blue");
             BHistogramChart.autosize();
             BHistogramChart.applyCss();
