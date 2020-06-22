@@ -33,11 +33,14 @@ public class Controller {
     @FXML
     public LineChart LuminousHistogramChart;
 
-    protected ImageProcessing imageProcessing;
+    protected Histogram histogram;
+    protected Image image;
 
-    public ImageProcessing getImageProcessing()
-    {
-        return this.imageProcessing;
+    public ImageProcessing imageProcessing;
+
+    public void ConnectToPython(ImageProcessing imgProc) {
+        this.imageProcessing = imgProc;
+        System.out.println("Connection established");
     }
 
     @FXML
@@ -50,34 +53,34 @@ public class Controller {
 
         if(selectedImage!=null)
         {
-            imageProcessing = new ImageProcessing(new Image(selectedImage.toURI().toString()));
-            imageViewer.setImage(imageProcessing.image);
-            imageProcessing.histogram = new Histogram(imageProcessing.image);
+            image = new Image(selectedImage.toURI().toString());
+            imageViewer.setImage(image);
+            histogram = new Histogram(image);
 
             LuminousHistogramChart.getData().clear();
             LuminousHistogramChart.getData().addAll(
-                    imageProcessing.histogram.getSeriesLuminous());
+                    histogram.getSeriesLuminous());
             LuminousHistogramChart.getStyleClass().add("-fx-stroke: black");
             LuminousHistogramChart.autosize();
             LuminousHistogramChart.applyCss();
 
             RHistogramChart.getData().clear();
             RHistogramChart.getData().addAll(
-                    imageProcessing.histogram.getSeriesRed());
+                    histogram.getSeriesRed());
             RHistogramChart.setStyle("-fx-stroke: red");
             RHistogramChart.autosize();
             RHistogramChart.applyCss();
 
             GHistogramChart.getData().clear();
             GHistogramChart.getData().addAll(
-                    imageProcessing.histogram.getSeriesGreen());
+                    histogram.getSeriesGreen());
             GHistogramChart.setStyle("-fx-stroke: green");
             GHistogramChart.autosize();
             GHistogramChart.applyCss();
 
             BHistogramChart.getData().clear();
             BHistogramChart.getData().addAll(
-                    imageProcessing.histogram.getSeriesBlue());
+                    histogram.getSeriesBlue());
             BHistogramChart.setStyle("-fx-stroke: blue");
             BHistogramChart.autosize();
             BHistogramChart.applyCss();
@@ -112,6 +115,10 @@ public class Controller {
                 Logger.getAnonymousLogger().log(new LogRecord(SEVERE, "Failed to save a file"));
             }
         }
+    }
+
+    public void blurImage(ActionEvent actionEvent) {
+        imageProcessing.function();
     }
 }
 

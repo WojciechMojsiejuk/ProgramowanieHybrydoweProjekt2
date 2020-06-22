@@ -21,7 +21,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Filters">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Blur" />
+                    <MenuItem mnemonicParsing="false" onAction="#blurImage" text="Blur" />
                         <MenuItem mnemonicParsing="false" text="Sharpen" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" text="Contrast" />
