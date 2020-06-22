@@ -22,14 +22,18 @@
                 <Menu mnemonicParsing="false" text="Filters">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#blurImage" text="Blur" />
-                        <MenuItem mnemonicParsing="false" text="Sharpen" />
+                        <MenuItem mnemonicParsing="false" onAction="#sharpenImage" text="Sharpen" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Contrast" />
-                        <MenuItem mnemonicParsing="false" text="Brightness" />
-                        <MenuItem mnemonicParsing="false" text="Saturation" />
+                        <MenuItem mnemonicParsing="false" onAction="#contrastImage" text="Contrast" />
+                        <MenuItem mnemonicParsing="false" onAction="#brightnessImage" text="Brightness" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Color Temperature" />
-                        <MenuItem mnemonicParsing="false" text="Color balance" />
+                        <Menu mnemonicParsing="false" text="Color Temperature">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#coolingImage" text="CoolingFilter" />
+                              <MenuItem mnemonicParsing="false" onAction="#warmingImage" text="WarmingFilter" />
+                          </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" onAction="#colorBalanceImage" text="Color Balance" />
                   </items>
                 </Menu>
               </menus>

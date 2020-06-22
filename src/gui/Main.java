@@ -18,8 +18,6 @@ public class Main extends Application {
         primaryStage.setTitle("Image processing");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
-
     }
 
 
